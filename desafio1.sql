@@ -18,13 +18,12 @@ CREATE TABLE planos(
 
 CREATE TABLE artistas (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    fisrt_name VARCHAR(20) NOT NULL,
-    last_name VARCHAR(20) NOT NULL DEFAULT ' '
+    artista VARCHAR(30) NOT NULL
 ) engine = InnoDB;
 
-CREATE TABLE album (
+CREATE TABLE albuns (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    fisrt_name VARCHAR(20) NOT NULL,
+    nome VARCHAR(30) NOT NULL,
     artista_id INT NOT NULL,
     ano_lancamento YEAR NOT NULL,
     FOREIGN KEY (artista_id) REFERENCES artistas (id)
@@ -56,15 +55,10 @@ CREATE TABLE historico_de_reproducoes (
     FOREIGN KEY (usuario_id) REFERENCES users (id)
 ) engine = InnoDB;
 
-CREATE TABLE artistas_usuario () engine = InnoDB;
-
-INSERT INTO SpotifyClone.tabela1 (coluna1, coluna2)
-VALUES
-  ('exemplo de dados 1', 'exemplo de dados A'),
-  ('exemplo de dados 2', 'exemplo de dados B'),
-  ('exemplo de dados 3', 'exemplo de dados C');
-
-INSERT INTO SpotifyClone.tabela2 (coluna1, coluna2)
-VALUES
-  ('exemplo de dados 1', 'exemplo de dados X'),
-  ('exemplo de dados 2', 'exemplo de dados Y');
+CREATE TABLE seguindo_artistas (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    artista_id_seguido INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES users (id),
+    FOREIGN KEY (artista_id_seguido) REFERENCES artistas (id)
+) engine = InnoDB;
