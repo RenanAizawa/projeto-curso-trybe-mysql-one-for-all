@@ -39,19 +39,18 @@ CREATE TABLE IF NOT EXISTS SpotifyClone.music (
 ) engine = InnoDB;
 
 CREATE TABLE IF NOT EXISTS SpotifyClone.historico_de_reproducoes (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    music_name VARCHAR(30) NOT NULL,
     music_id INT NOT NULL,
     usuario_id INT NOT NULL,
     data_reproducao DATETIME NOT NULL,
+    PRIMARY KEY (music_id, usuario_id),
     FOREIGN KEY (music_id) REFERENCES SpotifyClone.music (id),
     FOREIGN KEY (usuario_id) REFERENCES SpotifyClone.users (id)
 ) engine = InnoDB;
 
 CREATE TABLE IF NOT EXISTS SpotifyClone.seguindo_artistas (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
     artista_id_seguido INT NOT NULL,
+    PRIMARY KEY (usuario_id, artista_id_seguido),
     FOREIGN KEY (usuario_id) REFERENCES SpotifyClone.users (id),
     FOREIGN KEY (artista_id_seguido) REFERENCES SpotifyClone.artistas (id)
 ) engine = InnoDB;
@@ -141,46 +140,46 @@ VALUES
 ('Baby', 10, 136),
 ('You Make Me Feel So..', 10, 83);
 
-INSERT INTO SpotifyClone.historico_de_reproducoes (music_name, music_id, usuario_id, data_reproducao)
+INSERT INTO SpotifyClone.historico_de_reproducoes (music_id, usuario_id, data_reproducao)
 VALUES
-('Honey', 36, 1, '2020-02-28 10:45:55'),
-('Walking And Man', 25, 1, '2020-05-02 05:30:35'),
-('Young And Father', 23, 1, '2020-03-06 11:22:33'),
-('Diamond Power', 14, 1, '2020-08-05 08:05:17'),
-("Let's Be Silly", 15, 1, '2020-09-14 16:32:22'),
-('I Heard I Want To Bo Alone', 34, 2, '2020-01-02 07:40:33'),
-('Finding My Traditions', 24, 2, '2020-05-16 06:15:22'),
-('Without My Love', 21, 2, '2020-10-09 12:27:48'),
-('Baby', 39, 2, '2020-09-21 13:14:46'),
-('Magic Circus', 6, 3, '2020-11-13 16:55:13'),
-('Dance With Her Own', 3, 3, '2020-12-05 18:38:30'),
-('Hard And Time', 26, 3, '2020-07-30 10:00:00'),
-('Reflections Of Magic', 2, 4, '2021-08-15 17:10:10'),
-('I Ride Alone', 35, 4, '2021-07-10 15:20:30'),
-("Honey, I'm A Lone Wolf", 27, 4, '2021-01-09 01:44:33'),
-('Honey, So Do I', 7, 5, '2020-07-03 19:33:28'),
-('Rock His Everything', 12, 5, '2017-02-24 21:14:22'),
-('Diamond Power', 14, 5, '2020-08-06 15:23:43'),
-('Soul For Us', 1, 5, '2020-11-10 13:52:27'),
-("Wouldn't It Be Nice", 38, 6, '2019-02-17 20:33:48'),
-("He Heard You're Bad For Me", 29, 6, '2017-01-24 00:31:17'),
-("He Hopes We Can't Stay", 30, 6, '2017-10-12 12:35:20'),
-('Walking And Game', 22, 6, '2018-05-29 14:56:41'),
-('Time Fireworks', 5, 7, '2018-05-09 22:30:49'),
-('Troubles Of My Inner Fire', 4, 7, '2020-07-27 12:52:58'),
-('Celebration Of More', 11, 7, '2018-01-16 18:40:43'),
-('Baby', 39, 8, '2018-03-21 16:56:40'),
-('You Make Me Feel So..', 40, 8, '2020-10-18 13:38:05'),
-("He's Walking Away", 32, 8, '2019-05-25 08:14:03'),
-("He's Trouble", 33, 8, '2021-08-15 21:37:09'),
-('Thang Of Thunder', 16, 9, '2021-05-24 17:23:45'),
-('Words Of Her Life', 17, 9, '2018-12-07 22:48:52'),
-("Sweetie, Let's Go Wild", 8, 9, '2021-03-14 06:14:26'),
-('She Knows', 9, 9, '2020-04-01 03:26:00'),
-('History Of My Roses', 20, 10, '2017-02-06 08:21:34'),
-('Without My Love', 21, 10, '2017-12-04 05:33:43'),
-('Rock His Everything', 12, 10, '2017-07-27 05:24:49'),
-('Home Forever', 13, 10, '2017-12-25 01:03:57');
+(36, 1, '2020-02-28 10:45:55'),
+(25, 1, '2020-05-02 05:30:35'),
+(23, 1, '2020-03-06 11:22:33'),
+(14, 1, '2020-08-05 08:05:17'),
+(15, 1, '2020-09-14 16:32:22'),
+(34, 2, '2020-01-02 07:40:33'),
+(24, 2, '2020-05-16 06:15:22'),
+(21, 2, '2020-10-09 12:27:48'),
+(39, 2, '2020-09-21 13:14:46'),
+(6, 3, '2020-11-13 16:55:13'),
+(3, 3, '2020-12-05 18:38:30'),
+(26, 3, '2020-07-30 10:00:00'),
+(2, 4, '2021-08-15 17:10:10'),
+(35, 4, '2021-07-10 15:20:30'),
+(27, 4, '2021-01-09 01:44:33'),
+(7, 5, '2020-07-03 19:33:28'),
+(12, 5, '2017-02-24 21:14:22'),
+(14, 5, '2020-08-06 15:23:43'),
+(1, 5, '2020-11-10 13:52:27'),
+(38, 6, '2019-02-17 20:33:48'),
+(29, 6, '2017-01-24 00:31:17'),
+(30, 6, '2017-10-12 12:35:20'),
+(22, 6, '2018-05-29 14:56:41'),
+(5, 7, '2018-05-09 22:30:49'),
+(4, 7, '2020-07-27 12:52:58'),
+(11, 7, '2018-01-16 18:40:43'),
+(39, 8, '2018-03-21 16:56:40'),
+(40, 8, '2020-10-18 13:38:05'),
+(32, 8, '2019-05-25 08:14:03'),
+(33, 8, '2021-08-15 21:37:09'),
+(16, 9, '2021-05-24 17:23:45'),
+(17, 9, '2018-12-07 22:48:52'),
+(8, 9, '2021-03-14 06:14:26'),
+(9, 9, '2020-04-01 03:26:00'),
+(20, 10, '2017-02-06 08:21:34'),
+(21, 10, '2017-12-04 05:33:43'),
+(12, 10, '2017-07-27 05:24:49'),
+(13, 10, '2017-12-25 01:03:57');
 
 INSERT INTO SpotifyClone.seguindo_artistas (usuario_id, artista_id_seguido)
 VALUES
